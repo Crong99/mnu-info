@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>16:40 신안병원 버스</title>
+    </head>
+    <body>
+        <div id="map" style="width:100%; height:900px;"></div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ceb83217b5f4886c1d50ecae3cba0ff4"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+        <script>
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(34.80657958027626, 126.40255266341056), //지도 중앙 좌표
+                level: 6
+            };
+    
+            var map = new kakao.maps.Map(container, options);
+
+            var busstop = [
+                {
+                    title: '목포대학교',
+                    content: '<div>목포대학교</div>',
+                    latlng: new kakao.maps.LatLng(34.908613427021194, 126.43437505516722)
+                },
+
+                {
+                    title: '석현동인성학교',
+                    content: '<div>석현동인성학교</div>',
+                    latlng: new kakao.maps.LatLng(34.82782532905755, 126.42498054003576)
+                },
+
+                {
+                    title: '버스터미널',
+                    content: '<div>버스터미널</div>',
+                    latlng: new kakao.maps.LatLng(34.812675111037365, 126.41786429148328)
+                },
+
+                {
+                    title: '홈플러스',
+                    content: '<div>홈플러스</div>',
+                    latlng: new kakao.maps.LatLng(34.80584544001599, 126.39944884253998)
+                },
+
+                {
+                    title: '2호광장',
+                    content: '<div>2호광장</div>',
+                    latlng: new kakao.maps.LatLng(34.80245182866075, 126.39221459323171)
+                },
+
+                {
+                    title: '연동육교',
+                    content: '<div>연동육교</div>',
+                    latlng: new kakao.maps.LatLng(34.799675569803206, 126.38997023768665)
+                },
+
+                {
+                    title: '목포역',
+                    content: '<div>목포역</div>',
+                    latlng: new kakao.maps.LatLng(34.79071892187807, 126.3861300309204)
+                },
+
+                {
+                    title: '신안병원',
+                    content: '<div>신안병원</div>',
+                    latlng: new kakao.maps.LatLng(34.78952629390116, 126.39276287694943)
+                }
+            ];
+
+            for (var i = 0; i < busstop.length; i ++) {
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: busstop[i].latlng, // 마커를 표시할 위치
+                    title: busstop[i].title // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                });
+
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: busstop[i].content // 인포윈도우에 표시할 내용
+                });
+
+                (function(marker, infowindow) {
+                    // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+                    kakao.maps.event.addListener(marker, 'mouseover', function() {
+                    infowindow.open(map, marker);
+                });
+
+                    // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+                    kakao.maps.event.addListener(marker, 'mouseout', function() {
+                    infowindow.close();
+                    });
+                })(marker, infowindow);
+            }
+
+            var polyline = new kakao.maps.Polyline({
+                map: map,
+                path: [
+                    new kakao.maps.LatLng(34.908613427021194, 126.43437505516722),
+                    new kakao.maps.LatLng(34.82782532905755, 126.42498054003576),
+                    new kakao.maps.LatLng(34.812675111037365, 126.41786429148328),
+                    new kakao.maps.LatLng(34.80584544001599, 126.39944884253998),
+                    new kakao.maps.LatLng(34.80245182866075, 126.39221459323171),
+                    new kakao.maps.LatLng(34.799675569803206, 126.38997023768665),
+                    new kakao.maps.LatLng(34.79071892187807, 126.3861300309204),
+                    new kakao.maps.LatLng(34.78952629390116, 126.39276287694943)
+                ],
+                strokeWeight: 2,
+                strokeColor: '#0000FF',
+                strokeOpacity: 0.8,
+                strokeStyle: 'dashed'
+            })
+        </script>
+    </body>
+    </html>

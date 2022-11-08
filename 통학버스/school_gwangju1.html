@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>07:10 염주체육관건너편육교</title>
+    </head>
+    <body>
+        <div id="map" style="width:100%; height:900px;"></div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ceb83217b5f4886c1d50ecae3cba0ff4"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+        <script>
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(35.14043650424131, 126.83258070660686), //지도 중앙 좌표
+                level: 6
+            };
+    
+            var map = new kakao.maps.Map(container, options);
+
+            var busstop = [
+                {
+                    title: '염주체육관건너편육교',
+                    content: '<div>염주체육관건너편육교</div>',
+                    latlng: new kakao.maps.LatLng(35.13713877097013, 126.87685660770612)
+                },
+
+                {
+                    title: '서광주우체국건너편_CU',
+                    content: '<div>서광주우체국건너편</div>',
+                    latlng: new kakao.maps.LatLng(35.146614257655116, 126.8724253319095)
+                },
+
+                {
+                    title: '구호남대_한마음신경정신과',
+                    content: '<div>구호남대_한마음신경정신과</div>',
+                    latlng: new kakao.maps.LatLng(35.15104352649094, 126.86133415720927)
+                },
+
+                {
+                    title: '세정아울렛버스승강장',
+                    content: '<div>세정아울렛버스승강장</div>',
+                    latlng: new kakao.maps.LatLng(35.14639185453401, 126.84765486338473)
+                },
+
+                {
+                    title: '구송정파출소건너편_할리매장옆승강장',
+                    content: '<div>구송정파출소건너편_할리매장옆승강장</div>',
+                    latlng: new kakao.maps.LatLng(35.143979904907404, 126.80328502037818)
+                },
+
+                {
+                    title: '송정역시외버스승강장',
+                    content: '<div>송정역시외버스승강장</div>',
+                    latlng: new kakao.maps.LatLng(35.13639643238035, 126.79071501998258)
+                },
+
+                {
+                    title: '목포대학교',
+                    content: '<div>목포대학교</div>',
+                    latlng: new kakao.maps.LatLng(34.908642453633156, 126.43431741065746)
+                }
+            ];
+
+            for (var i = 0; i < busstop.length; i ++) {
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: busstop[i].latlng, // 마커를 표시할 위치
+                    title: busstop[i].title // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                });
+
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: busstop[i].content // 인포윈도우에 표시할 내용
+                });
+
+                (function(marker, infowindow) {
+                    // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+                    kakao.maps.event.addListener(marker, 'mouseover', function() {
+                    infowindow.open(map, marker);
+                });
+
+                    // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+                    kakao.maps.event.addListener(marker, 'mouseout', function() {
+                    infowindow.close();
+                    });
+                })(marker, infowindow);
+            }
+
+            var polyline = new kakao.maps.Polyline({
+                map: map,
+                path: [
+                new kakao.maps.LatLng(35.13713877097013, 126.87685660770612),
+                new kakao.maps.LatLng(35.146614257655116, 126.8724253319095),
+                new kakao.maps.LatLng(35.15104352649094, 126.86133415720927),
+                new kakao.maps.LatLng(35.14639185453401, 126.84765486338473),
+                new kakao.maps.LatLng(35.143979904907404, 126.80328502037818),
+                new kakao.maps.LatLng(35.13639643238035, 126.79071501998258),
+                new kakao.maps.LatLng(34.908642453633156, 126.43431741065746)
+                ],
+                strokeWeight: 2,
+                strokeColor: '#0000FF',
+                strokeOpacity: 0.8,
+                strokeStyle: 'dashed'
+            })
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,19 @@
+
+.mnuInfo .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container .row {
+    display: inline-block;
+  }
+  .mnuInfo .mnuBtn {
+    
+    width: 45px;
+    height: 45px;
+    margin: 0;
+    border-radius: 20px;
+    border: 2px solid var(--color-black);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
+  }
+  
