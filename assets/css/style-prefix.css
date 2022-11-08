@@ -957,7 +957,9 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 .mnuInfo {
   margin-bottom: 50px;
 }
-
+.notice-menu {
+  color: #000000;
+}
 .mnuInfo .container {
   display: flex;
   justify-content: center;
